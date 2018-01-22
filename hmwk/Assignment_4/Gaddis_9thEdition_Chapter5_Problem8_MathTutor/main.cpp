@@ -110,12 +110,12 @@ subtraction (){
     int difference;
     int greater, lesser;
     if (number1>=number2){
-        number1 = greater;
-        number2 = lesser;
+        greater = number1;
+        lesser = number2;
     }
     else{
-        number2 = greater;
-        number1 = lesser;
+        greater = number2;
+        lesser = number1;
     }
     cout<<setw(5)<<greater<<endl;
     cout<<"-"<<setw(4)<<lesser<<endl;
