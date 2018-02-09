@@ -4,3 +4,4 @@ Stacy 267
 Emily 240
 Ben 250
 Alli 247 
+Clay 256 

@@ -59,7 +59,9 @@ int main(int argc, char** argv) {
     cout << "You are playing the game of Yahtzee!\n";
     cout << "Good luck!\n";
     inFile.open("Project_2.txt"); //open the in file
-    outFile.open("Project_2.txt", ios::app); //open existing out file   
+    outFile.open("Project_2.txt", ios::app); //open existing out file  
+    
+    
     //take names and scores from file and place them in vectors
     while (inFile >> player >> past) {
         players.push_back(player);
@@ -322,7 +324,7 @@ void turn(int (&scores)[2][13], const string cats[], vector<string> names, int p
         //allow user to input category choice
         cin.ignore();
         getline(cin, choice);
-        for(short i = 0; i<13; i++){
+        for(short i = 0; i<13; i++){//helps validate user input by finding which category is chosen, so while loop can check if it has already been chosen
             if(choice == cats[i]){
                 taken = i;
             }
@@ -339,6 +341,7 @@ void turn(int (&scores)[2][13], const string cats[], vector<string> names, int p
             }
         }
         //for loop to make sure chosen category hasn't already been chosen
+        
         
         //see how many of each number was rolled on the dice
         switch (dice1) {
