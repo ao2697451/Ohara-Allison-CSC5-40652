@@ -57,9 +57,7 @@ int main(int argc, char** argv) {
     //initialize category scores at zero
     //opening message
     cout << "You are playing the game of Yahtzee!\n";
-    cout << "If you get a score of 200 or higher, you win!\n";
     cout << "Good luck!\n";
-    cout << "This is your last score. Try and beat it! \n";
     inFile.open("Project_2.txt"); //open the in file
     outFile.open("Project_2.txt", ios::app); //open existing out file   
     //take names and scores from file and place them in vectors
@@ -170,7 +168,7 @@ int main(int argc, char** argv) {
         //if there is only one player, he wins if gets a score of 225 or better
         //if he wins, add his name and score to the scorebaord
         if (total >= WINNING) {
-            cout << "Congratulations! You got a score of 200 or better and won one-player version\n";
+            cout << "Congratulations! You got a score of 225 or better and won one-player version\n";
             outFile << names[0] << " " << total << " " << endl;
             fScores.push_back(total);
             players.push_back(names[0]);
@@ -256,6 +254,7 @@ void turn(int (&scores)[2][13], const string cats[], vector<string> names, int p
         //whether or not each category has already been chosen
         bool roll, roll1, roll2, roll3, roll4, roll5; //whether or not each die should be rolled again
         static bool chosen [2][13]; //array showing whether each category has been used or not
+       int taken;
         char r, answer;
         string choice;
         ones = twos = threes = fours = fives = sixes = 0; //start at 0 for each round
@@ -323,26 +322,24 @@ void turn(int (&scores)[2][13], const string cats[], vector<string> names, int p
         //allow user to input category choice
         cin.ignore();
         getline(cin, choice);
+        for(short i = 0; i<13; i++){
+            if(choice == cats[i]){
+                taken = i;
+            }
+        }
         //while loop to validate user input
-        while (choice != cats[0] && choice != cats[1] && choice != cats[2] && choice != cats[3] && choice != cats[4] && choice != cats[5] && choice != cats[6] &&
-                choice != cats[7] && choice != cats[8] & choice != cats[9] && choice != cats[10] && choice != cats[11] && choice != cats[12]) {
+        while ((choice != cats[0] && choice != cats[1] && choice != cats[2] && choice != cats[3] && choice != cats[4] && choice != cats[5] && choice != cats[6] &&
+                choice != cats[7] && choice != cats[8] & choice != cats[9] && choice != cats[10] && choice != cats[11] && choice != cats[12])||chosen[player][taken]) {
             cout << "Invalid category choice. Enter again.\n";
             getline(cin, choice);
-        }
-        //for loop to make sure chosen category hasn't already been chosen
-        for (short i = 0; i < 13; i++) {
-            if (choice == cats[i]) {
-                if (chosen[player][i]) {
-                    cout << "You've already used this category. Enter a valid category.\n";
-                    cout << "These are your available categories.\n";
-                    for (short i = 0; i < 13; i++) {
-                        if (!chosen[player][i])
-                            cout << cats[i] << endl;
-                    }
-                    getline(cin, choice);
+            for(short i = 0; i<13; i++){
+                if(choice == cats[i]){
+                    taken = i;
                 }
             }
         }
+        //for loop to make sure chosen category hasn't already been chosen
+        
         //see how many of each number was rolled on the dice
         switch (dice1) {
             case 1:ones++;

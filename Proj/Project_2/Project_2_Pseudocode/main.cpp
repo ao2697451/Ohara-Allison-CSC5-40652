@@ -87,7 +87,7 @@
     //finally, if they tie, then they both wins and both scores/names are saved in the file
         //both scores and names are also added to the vector with past scores and names
 
-    //if there is only one player, he wins if gets a score of 200 or better
+    //if there is only one player, he wins if gets a score of 225 or better
     //if he wins, add his name and score to the scorebaord
     
     //close the file
@@ -145,8 +145,6 @@
         //allow user to input category choice
 
         //while loop to validate user input
-
-        //for loop to make sure chosen category hasn't already been chosen
 
         //see how many of each number was rolled on the dice
 
